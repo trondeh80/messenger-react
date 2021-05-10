@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useReducer, useState, useEffect } from 'react';
+import './App.scss';
+import Header from './components/header/header';
+import Main from './components/main/main';
+import MessengerContext, { messengerReducer, messengerState } from './context/MessengerContext';
+import getChats from './services/messenger-service';
+import ENUMS from './util/enums';
+import Loader from './components/loader/loader';
 
 function App() {
+  const [state, dispatch] = useReducer(messengerReducer, messengerState);
+  const [ isLoading, setIsLoading ] = useState(true);
+  useEffect(initialDataFetch, []); // Empty array makes this call only run on mount
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MessengerContext.Provider value={{ state, dispatch }}>
+      {
+        isLoading ? <Loader /> : (
+          <>
+            <Header />
+            <Main />
+          </>
+        )
+      }
+    </MessengerContext.Provider>
   );
+
+  function initialDataFetch() {
+    getChats().then((userData) => {
+      setIsLoading(false);
+
+      dispatch({
+        type: ENUMS.MESSENGER.ACTIONS.LOAD,
+        data: {
+          users: [...userData]
+        }
+      });
+    });
+  }
 }
 
 export default App;
