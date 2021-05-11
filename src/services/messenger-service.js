@@ -1,11 +1,12 @@
 import sleep from '../util/sleep';
+import createChatMessage from "../util/create-chat-message";
 
 export default async function getChats() {
-  await sleep(1200);
+  await sleep(500);
   return [
     createUser({ name: 'John Doe' }),
     createUser({ name: 'Bruce Willis' }),
-    createUser({ id: 1337, name: 'Professor Chaos' }),
+    createUser({ id: 1337, name: 'Professor Chaos', isMe: true }),
   ];
 }
 
@@ -18,18 +19,10 @@ function createUser({ name, id = null }) {
 }
 
 export async function fetchChatForUser(userId) {
-  await sleep(500);
+  await sleep(100);
   return [
-    createChat({ userId, message: 'Did you buy gamestop stocks?' }),
-    createChat({ userId: 1337, message: 'Nah, only bought dogecoin...' })
+    createChatMessage({ userId, message: 'Did you buy gamestop stocks?' }),
+    createChatMessage({ userId: 1337, message: 'Nah, only bought dogecoin...' })
   ];
 }
 
-function createChat({ userId, message }) {
-  return {
-    id: Math.round(Math.random() * 100000),
-    userId,
-    message,
-    time: new Date().getTime() - 1000
-  };
-}

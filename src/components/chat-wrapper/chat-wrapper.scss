@@ -2,11 +2,17 @@
 
 .chat {
   height: calc(100vh - #{$headerHeight});
-  overflow-y: scroll;
-
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 2rem 0;
+  padding: 0 0 0 1rem;
+
+  &__messages {
+    overflow-y: scroll;
+  }
+
+  &__input {
+    padding: 1rem 1rem 1rem 0;
+  }
 }
 

@@ -2,6 +2,31 @@
 
 .user-list {
   height: calc(100vh - #{$headerHeight});
-  background: $mustardYellow;
+  background: $brown;
   overflow-y: scroll;
+}
+
+.user {
+  width: 100%;
+
+  button {
+    background: $darkBrown;
+    width: 100%;
+    border: none;
+    color: white;
+    font-size: 1.25rem;
+    padding: 1rem;
+    text-align: left;
+  }
+
+  &.active {
+    button {
+      background: white;
+      color: black;
+    }
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 0.12rem;
+  }
 }

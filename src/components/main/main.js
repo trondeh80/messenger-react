@@ -5,14 +5,14 @@ import Chat from '../chat/chat';
 import '../../css/main.scss';
 
 export default function Main() {
-  return (
-    <main>
-      <div className="section section--left">
-        <UserList />
-      </div>
-      <div className="section section--right">
-        <Chat />
-      </div>
-    </main>
-  );
+    return (
+      <main>
+          <div className="section section--left">
+              <UserList />
+          </div>
+          <div className="section section--right">
+              <Chat />
+          </div>
+      </main>
+    );
 }

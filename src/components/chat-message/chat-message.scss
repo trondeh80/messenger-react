@@ -1,2 +1,13 @@
 .chat-message {
+  padding-right: 1rem;
+  margin-bottom: .5rem;
+
+  &--me {
+    text-align: right;
+  }
+
+  &__user {
+    font-size: 0.85rem;
+    color: #999;
+  }
 }
