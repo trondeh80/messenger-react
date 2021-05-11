@@ -5,7 +5,7 @@ import './chat-wrapper.scss';
 export default function ChatWrapper({ children, isLoading = true }) {
     const messagesRef = useRef(null);
     if (messagesRef.current) {
-        messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
+        setScrolling(messagesRef.current);
     }
 
     return (
@@ -18,4 +18,10 @@ export default function ChatWrapper({ children, isLoading = true }) {
           </div>
       </div>
     );
+}
+
+function setScrolling(domNodeRef) {
+    setTimeout(() => {
+        domNodeRef.scrollTop = domNodeRef.scrollHeight;
+    }, 5);
 }
