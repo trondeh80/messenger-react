@@ -1,0 +1,7 @@
+@import '../../css/variables';
+
+.user-list {
+  height: calc(100vh - #{$headerHeight});
+  background: $mustardYellow;
+  overflow-y: scroll;
+}

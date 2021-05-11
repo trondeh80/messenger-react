@@ -1,0 +1,12 @@
+@import '../../css/variables';
+
+.chat {
+  height: calc(100vh - #{$headerHeight});
+  overflow-y: scroll;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem 0;
+}
+

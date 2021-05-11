@@ -1,9 +1,18 @@
 import React, { useContext } from 'react';
-import MessengerContext from "../../context/MessengerContext";
-import ENUMS from "../../util/enums";
+import MessengerContext from '../../context/messenger-context';
+import ENUMS from '../../util/enums';
+
+import './user-list.scss';
 
 export default function UserList() {
-  const { state: { users = [], activeUser }, dispatch } = useContext(MessengerContext);
+  const {
+    state: {
+      users = [],
+      activeUser
+    },
+    dispatch
+  } = useContext(MessengerContext);
+
   return (
     <div className="user-list">
       {
@@ -17,7 +26,7 @@ export default function UserList() {
     const dateStr = `${lastOnlineDate.getHours()}:${lastOnlineDate.getMinutes()}`;
     const activeClass = activeUser === id ? 'active' : '';
     return (
-      <div className={activeClass + ' user'}>
+      <div className={activeClass + ' user'} key={id}>
         <button className="user--button" onClick={getActivateUserFn(id)}>
           {name} <span className="user--lastonline">{dateStr}</span>
         </button>
@@ -33,7 +42,7 @@ export default function UserList() {
           id
         }
       });
-    }
+    };
   }
 }
 

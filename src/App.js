@@ -1,8 +1,7 @@
 import React, { useReducer, useState, useEffect } from 'react';
-import './App.scss';
 import Header from './components/header/header';
 import Main from './components/main/main';
-import MessengerContext, { messengerReducer, messengerState } from './context/MessengerContext';
+import MessengerContext, { messengerReducer, messengerState } from './context/messenger-context';
 import getChats from './services/messenger-service';
 import ENUMS from './util/enums';
 import Loader from './components/loader/loader';

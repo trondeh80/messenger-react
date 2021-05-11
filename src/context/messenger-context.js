@@ -3,10 +3,13 @@ import ENUMS from '../util/enums';
 
 export const messengerState = {
   users: [],
-  activeUser: null
+  activeUser: null,
+  chats: {}
 };
 
 export function messengerReducer(state, { data, type }) {
+
+
   switch(type) {
     case ENUMS.MESSENGER.ACTIONS.LOAD:
       const { users = [] } = data;
@@ -16,10 +19,20 @@ export function messengerReducer(state, { data, type }) {
       };
 
     case ENUMS.MESSENGER.ACTIONS.SET_CHAT_ID:
-      const { id: activeUser } = data;
+      const { id } = data;
       return {
         ...state,
-        activeUser
+        activeUser: id
+      };
+
+    case ENUMS.MESSENGER.ACTIONS.MESSAGES_LOAD:
+      const { messages } = data;
+      const { activeUser } = state;
+      return {
+        ...state,
+        chats: {
+          [activeUser]:messages
+        }
       };
 
     default:

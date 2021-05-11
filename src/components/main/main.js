@@ -1,6 +1,8 @@
 import React from 'react';
-import UserList from "../user-list/user-list";
-import Chat from "../chat/chat";
+import UserList from '../user-list/user-list';
+import Chat from '../chat/chat';
+
+import '../../css/main.scss';
 
 export default function Main() {
   return (
