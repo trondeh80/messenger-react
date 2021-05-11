@@ -1,6 +1,6 @@
 import React from 'react';
 import ENUMS from '../util/enums';
-import createChatMessage from "../util/create-chat-message";
+import createChatMessage from '../util/create-chat-message';
 
 export const messengerState = {
     userId: 1337,
@@ -10,7 +10,7 @@ export const messengerState = {
 };
 
 export function messengerReducer(state, { data, type }) {
-    const { activeUser, userId } = state;
+    const { activeUser, userId, chats } = state;
 
     switch (type) {
         case ENUMS.MESSENGER.ACTIONS.LOAD:
@@ -22,22 +22,28 @@ export function messengerReducer(state, { data, type }) {
 
         case ENUMS.MESSENGER.ACTIONS.SET_CHAT_ID:
             const { id } = data;
+            const messages = chats?.[activeUser] ?? [];
             return {
                 ...state,
-                activeUser: id
+                activeUser: id,
+                chats: {
+                    [activeUser]: [...messages],
+                    ...chats
+                }
             };
 
         case ENUMS.MESSENGER.ACTIONS.MESSAGES_LOAD:
-            const { messages } = data;
+            const { messages: serverMessages } = data;
+            const chatMessages = chats?.[activeUser] ?? serverMessages;
             return {
                 ...state,
                 chats: {
-                    [activeUser]: messages
+                    ...chats,
+                    [activeUser]: [...chatMessages],
                 }
             };
 
         case ENUMS.MESSENGER.ACTIONS.ADD_MESSAGE:
-            const { chats } = state;
             const { message } = data;
             const activeChat = chats?.[activeUser] ?? [];
             return {
