@@ -1,10 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
-import MessengerContext from '../../context/messenger-context';
-import { fetchChatForUser } from '../../services/messenger-service';
+import ENUMS from './enums';
+import MessengerContext from '../context/messenger-context';
+import { fetchChatForUser } from '../services/messenger-service';
 
 export default function useChats(userId) {
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(true);
+    const {
+        dispatch
+    } = useContext(MessengerContext);
 
     useEffect(fetchData, [userId]);
 
@@ -15,10 +19,6 @@ export default function useChats(userId) {
         if (!userId) {
             return;
         }
-
-        const {
-            dispatch
-        } = useContext(MessengerContext);
 
         fetchChatForUser(userId)
             .then((messages) => {
