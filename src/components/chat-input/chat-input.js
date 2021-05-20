@@ -30,6 +30,17 @@ export default function ChatInput({ isLoading }) {
     }
 
     function onSubmit(e) {
+        handleEvent(e);
+
+        e.preventDefault();
+        return false;
+    }
+
+    function handleEvent() {
+        if (message.trim() === '') {
+            return;
+        }
+
         dispatch({
             type: ENUMS.MESSENGER.ACTIONS.ADD_MESSAGE,
             data: {
@@ -37,7 +48,5 @@ export default function ChatInput({ isLoading }) {
             }
         });
         setMessage(''); // Clear chat
-        e.preventDefault();
-        return false;
     }
 }

@@ -3,6 +3,7 @@ export default function createChatMessage({ userId, message }) {
         id: Math.round(Math.random() * 100000),
         userId,
         message,
-        time: new Date().getTime()
+        time: new Date().getTime(),
+        siblings: null
     };
 }
