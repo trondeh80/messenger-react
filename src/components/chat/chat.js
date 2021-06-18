@@ -13,7 +13,7 @@ export default function Chat() {
         }
     } = useContext(MessengerContext);
 
-    const { isLoading } = useChats(activeUser)
+    const { isLoading } = useChats(activeUser); // Fetches chat from server and dispatches a context state change
     const messages = chats?.[activeUser] ?? [];
 
     if (!activeUser) {
